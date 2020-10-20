@@ -16,11 +16,11 @@ class ListViewSet(viewsets.ModelViewSet):
         return List.objects.filter(user=user)
 
         def create(self, request, *args, **kwargs):
-        serializer = ListSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer = ListSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save(user=request.user)
+                return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
